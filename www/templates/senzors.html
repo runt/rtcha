@@ -1,5 +1,34 @@
-<ion-view view-title="Browse">
+<ion-view view-title="Senzory">
   <ion-content>
-    <h1>Browse</h1>
+      <div class="card">
+	  <div class="item item-divider item-royal">
+	      {{temp.topic}}
+	  </div>
+	  <div class="item item-text-wrap">
+	      <h1 class="text-center">{{temp.value}} °C</h1>
+	      <p class="text-center">{{temp.stamp|date:'d.M.yyyy v HH:mm:ss'}}</p>
+	  </div>
+      </div>
+      
+      <div class="card">
+	  <div class="item item-divider item-assertive">
+	      {{hum.topic}}
+	  </div>
+	  <div class="item item-text-wrap">
+	      <h1 class="text-center">{{hum.value}} %</h1>
+	      <p class="text-center">{{hum.stamp|date:'d.M.yyyy v HH:mm:ss'}}</p>
+	  </div>
+      </div>
+      
+      <div class="card">
+	  <div class="item item-divider item-dark">
+	      {{light.topic}}
+	  </div>
+	  <div class="item item-text-wrap">
+	      <h1 class="text-center">{{light.value}}</h1>
+	      <p class="text-center">{{light.stamp|date:'d.M.yyyy v HH:mm:ss'}}</p>
+	  </div>
+      </div>
+      
   </ion-content>
 </ion-view>

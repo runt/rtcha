@@ -1,5 +1,25 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>Search</h1>
-  </ion-content>
+<ion-view view-title="On Off">
+    <ion-content>
+	<div class="row">
+	    <div class="col">
+		<ul class="list">
+		    <li ng-repeat="s in switch" class="item item-text-wrap item-toggle">
+			{{s.description}}
+			<label class="toggle toggle-assertive">
+			    <input ng-model="s.state" type="checkbox">
+			    <div class="track">
+				<div class="handle"></div>
+			    </div>
+			</label>
+		    </li>
+
+		</ul>
+	    </div>
+	    <div class="col">
+		<code>
+		    {{switch|json}}
+		</code>
+	    </div>
+	</div>
+    </ion-content>
 </ion-view>

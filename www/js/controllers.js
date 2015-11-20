@@ -53,4 +53,64 @@ angular.module('rtcha.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('OnOffCtrl', function($scope, $stateParams) {
+    $scope.switch = [
+	{
+	    description:'světlo obývák - knihovna',
+	    state:false
+	},
+	{
+	    description:'světlo chodba',
+	    state:false
+	},
+    ];
+})
+
+// senzory controller ----------------------------------------------------------
+.controller('SenzoryCtrl', function($scope, $stateParams,$http) {
+    
+    $scope.stateParams = [
+			    {
+				a:1,
+				b:2
+			    }
+    ];
+    
+    $http.get(
+		    'http://nr.runtici.cz:3333/rest/getmqttlogs',
+		    {
+			params:{
+			    limit:1,
+			    t:'duino%T'
+			}
+		    }
+	    ).then(function (response) {
+		$scope.temp = response.data[0];
+	    });
+	    
+    $http.get(
+		    'http://nr.runtici.cz:3333/rest/getmqttlogs',
+		    {
+			params:{
+			    limit:1,
+			    t:'duino%H'
+			}
+		    }
+	    ).then(function (response) {
+		$scope.hum = response.data[0];
+	    });
+	    
+    $http.get(
+		    'http://nr.runtici.cz:3333/rest/getmqttlogs',
+		    {
+			params:{
+			    limit:1,
+			    t:'duino%A0'
+			}
+		    }
+	    ).then(function (response) {
+		$scope.light = response.data[0];
+	    });
 });

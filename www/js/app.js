@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('rtcha', ['ionic', 'rtcha.controllers'])
+var rtchaApp = angular.module('rtcha', ['ionic', 'rtcha.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,7 +36,8 @@ angular.module('rtcha', ['ionic', 'rtcha.controllers'])
     url: '/onoff',
     views: {
       'menuContent': {
-        templateUrl: 'templates/onoff.html'
+        templateUrl: 'templates/onoff.html',
+	controller: 'OnOffCtrl'
       }
     }
   })
@@ -45,7 +46,8 @@ angular.module('rtcha', ['ionic', 'rtcha.controllers'])
       url: '/senzors',
       views: {
         'menuContent': {
-          templateUrl: 'templates/senzors.html'
+          templateUrl: 'templates/senzors.html',
+	  controller: 'SenzoryCtrl'
         }
       }
     })
@@ -69,5 +71,12 @@ angular.module('rtcha', ['ionic', 'rtcha.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/dashboard');
+  $urlRouterProvider.otherwise('/app/senzors');
 });
+
+
+rtchaApp.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+]);
