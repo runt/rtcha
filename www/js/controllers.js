@@ -70,15 +70,9 @@ angular.module('rtcha.controllers', [])
 
 // senzory controller ----------------------------------------------------------
 .controller('SenzoryCtrl', function($scope, $stateParams,$http) {
-    
-    $scope.stateParams = [
-			    {
-				a:1,
-				b:2
-			    }
-    ];
-    
-    $http.get(
+
+    $scope.doRefresh = function(){
+	$http.get(
 		    'http://nr.runtici.cz:3333/rest/getmqttlogs',
 		    {
 			params:{
@@ -113,4 +107,9 @@ angular.module('rtcha.controllers', [])
 	    ).then(function (response) {
 		$scope.light = response.data[0];
 	    });
+	    
+	    $scope.$broadcast('scroll.refreshComplete');
+    }
+
+    $scope.doRefresh();
 });
